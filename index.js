@@ -7,7 +7,6 @@ var answer;
 var newWord;
 var nextGuessArray = [];
 
-
 function startGame() {
     inquirer.prompt([
         {
@@ -26,17 +25,13 @@ function startGame() {
 startGame();
 
 function newGame() {
-    // CHOOSE A RANDOM WORD FROM THE LIST OF AVENGERS
     answer = wordList[Math.floor(Math.random() * wordList.length)];
-    console.log('\nAnswer: ' + answer + '\n');
+    console.log('\nANSWER: ' + answer + '\n');
 
-    // CREATE A NEW OBJECT FOR EACH WORD
     newWord = new Word();
 
-    // CREATE A STRING FOR THE WORD
     newWord.wordString(answer);
 
-    // TAKE USER INPUT
     userLetter();
 }
 
@@ -44,18 +39,20 @@ function newGame() {
 
 function userLetter() {
 
+    // console.log(newWord.wordGuess);
+    // console.log(newWord.underscoreArray);
 
+    if (newWord.underscoreArray.indexOf('_') >= 0) {
         inquirer.prompt([
             {
                 type: 'input',
                 name: 'userInput',
-                message: 'Guess a letter'
+                message: 'GUESS A LETTER'
             }
         ]).then(function(data) {
     
-    
             var letterGuess = data.userInput.toUpperCase();
-            console.log('\nYou guessed: ' + letterGuess);
+            console.log('\nYOU GUESSED: ' + letterGuess);
     
             if (answer.indexOf(letterGuess) >= 0) {
                 newWord.userGuess(letterGuess);
@@ -68,19 +65,47 @@ function userLetter() {
             }
     
             nextGuessArray = newWord.underscoreArray.join(' ');
+            // nextGuessWordArray = newWord.wordGuess.join(' ');
+
             console.log('\n' + nextGuessArray + '\n');
 
     
             userLetter();
-    
+            
         });
+    } else {
+        ifWin();
+    }
+       
 
+
+
+       
 
 };
 
+function ifWin() {
+    console.log('YOU WIN!\n');
+    resetGame();
+}
 
 
-// function resetGame() {
-//     newWord.reset();
-// }
+function resetGame() {
+
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'restart',
+            message: 'PLAY AGAIN?'
+        }
+    ]).then(function(response) {
+        if (response.restart) {
+
+            newGame();
+            newWord.reset();
+    
+        }
+    })
+
+}
 
