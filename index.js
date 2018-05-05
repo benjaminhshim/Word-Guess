@@ -1,5 +1,7 @@
 var inquirer = require('inquirer');
 var Word = require('./Word');
+var clc = require('cli-color');
+
 
 
 var wordList = ['IRON MAN', 'CAPTAIN AMERICA', 'THOR', 'HULK', 'HAWKEYE', 'BLACK WIDOW'];
@@ -16,7 +18,7 @@ function startGame() {
         }
     ]).then(function(data) {
         if (data.start) {
-            console.log('\n==================\nAVENGER TIME!\n==================');
+            console.log(clc.yellow('\n==================\n') + clc.magenta('   AVENGER TIME!') + clc.yellow('\n=================='));
             newGame();
         }
     })
@@ -26,11 +28,14 @@ startGame();
 
 function newGame() {
     answer = wordList[Math.floor(Math.random() * wordList.length)];
-    console.log('\nANSWER: ' + answer + '\n');
+    // console.log('\nANSWER: ' + answer + '\n');
 
     newWord = new Word();
 
     newWord.wordString(answer);
+
+    nextGuessArray = newWord.underscoreArray.join(' ');
+    console.log('\n' + clc.cyan(nextGuessArray) + '\n');
 
     userLetter();
 }
@@ -52,7 +57,7 @@ function userLetter() {
         ]).then(function(data) {
     
             var letterGuess = data.userInput.toUpperCase();
-            console.log('\nYOU GUESSED: ' + letterGuess);
+            console.log('\nYOU GUESSED: ' + clc.yellow(letterGuess));
     
             if (answer.indexOf(letterGuess) >= 0) {
                 newWord.userGuess(letterGuess);
@@ -67,7 +72,7 @@ function userLetter() {
             nextGuessArray = newWord.underscoreArray.join(' ');
             // nextGuessWordArray = newWord.wordGuess.join(' ');
 
-            console.log('\n' + nextGuessArray + '\n');
+            console.log('\n' + clc.cyan(nextGuessArray) + '\n');
 
     
             userLetter();
@@ -85,7 +90,7 @@ function userLetter() {
 };
 
 function ifWin() {
-    console.log('YOU WIN!\n');
+    console.log(clc.bgRed('YOU WIN!\n'));
     resetGame();
 }
 
