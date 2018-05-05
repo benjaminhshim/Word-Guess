@@ -19,24 +19,30 @@ var Letter = function (character) {
 
         if (this.alreadyGuessed === false) {
             return '_';
+
         } else {
-            console.log(this.character);
+            return this.character;
+
         };
+
     };
 
-    this.correctLetter = function(character) {
-        if (this.character === character) {
+    this.correctLetter = function(char) {
+
+        if (this.character === char) {
             this.alreadyGuessed = true;
-            console.log('test');
         }
-        // this.showCharacter();
+        this.showCharacter();
+
 
     };
 
 }
 
-
-
+// var newLetter = new Letter('a');
+// console.log(newLetter.character);
+// newLetter.correctLetter('b');
+// console.log(newLetter.alreadyGuessed);
 
 
 module.exports = Letter;

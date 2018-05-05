@@ -2,39 +2,85 @@ var inquirer = require('inquirer');
 var Word = require('./Word');
 
 
-// var command = process.argv[2];
-
-// var wordList = ['IRON MAN', 'CAPTAIN AMERICA', 'THOR', 'HULK', 'HAWKEYE', 'BLACK WIDOW'];var letterArray = [];
-// var answer;
-
-// var wordSplit = wordList[0].split('');
-// console.log(wordSplit);
+var wordList = ['IRON MAN', 'CAPTAIN AMERICA', 'THOR', 'HULK', 'HAWKEYE', 'BLACK WIDOW'];
+var answer;
+var newWord;
+var nextGuessArray = [];
 
 
-// wordSplit.forEach(i => {
-//     i = '_';
-//     letterArray.push(i);
-//     answer = letterArray.join(' ');
-// })
+function startGame() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'start',
+            message: 'Start game?'
+        }
+    ]).then(function(data) {
+        if (data.start) {
+            console.log('\n==================\nAVENGER TIME!\n==================');
+            newGame();
+        }
+    })
+};
 
-// console.log(answer);
-
-var command = process.argv[2];
-
-var testWord = 'hello';
+startGame();
 
 function newGame() {
-    var newWord = new Word();
-    newWord.wordString(testWord);
-    userLetter(newWord);
+    // CHOOSE A RANDOM WORD FROM THE LIST OF AVENGERS
+    answer = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log('\nAnswer: ' + answer + '\n');
+
+    // CREATE A NEW OBJECT FOR EACH WORD
+    newWord = new Word();
+
+    // CREATE A STRING FOR THE WORD
+    newWord.wordString(answer);
+
+    // TAKE USER INPUT
+    userLetter();
 }
 
 
-newGame();
+
+function userLetter() {
 
 
-function userLetter (newWord) {
-    if (testWord.indexOf(command) >= 0) {
-        newWord.userGuess(command);
-    }
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'userInput',
+                message: 'Guess a letter'
+            }
+        ]).then(function(data) {
+    
+    
+            var letterGuess = data.userInput.toUpperCase();
+            console.log('\nYou guessed: ' + letterGuess);
+    
+            if (answer.indexOf(letterGuess) >= 0) {
+                newWord.userGuess(letterGuess);
+            }
+    
+            for (var i = 0; i < answer.length; i++) {
+                if (letterGuess === answer[i]) {
+                    newWord.underscoreArray[i] = newWord.wordGuess[i];
+                }
+            }
+    
+            nextGuessArray = newWord.underscoreArray.join(' ');
+            console.log('\n' + nextGuessArray + '\n');
+
+    
+            userLetter();
+    
+        });
+
+
 };
+
+
+
+// function resetGame() {
+//     newWord.reset();
+// }
+

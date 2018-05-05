@@ -7,7 +7,10 @@ var Letter = require('./Letter');
 
 
 function Word(word) {
+
 	this.letterArray = [];
+
+	this.underscoreArray = [];
 
 	this.wordGuess = [];
 
@@ -26,24 +29,34 @@ function Word(word) {
 			this.letterArray[i] = new Letter (this.letterArray[i]);
 			var underscore = this.letterArray[i].showCharacter();
 
-			this.wordGuess.push(underscore);
-			underscores = this.wordGuess.join(' ');
+			this.wordGuess.push(this.letterArray[i].character);
+
+			this.underscoreArray.push(underscore);
+			this.underscores = this.underscoreArray.join(' ');
 		}
-		console.log(underscores);
+		// console.log(this.underscores);
+		// console.log(this.wordGuess);
+		// console.log(this.underscoreArray);
 	 };
 
-	this.userGuess = function(letterGuess) {
 
-		if (this.wordGuess.indexOf(letterGuess) >= 0) {
-			newLetter.alreadyGuessed = true;
-			newLetter.correctLetter(letterGuess);
+
+	this.userGuess = function(letterGuess) {
+		// if (this.wordGuess.indexOf(letterGuess) >= 0) {
+			
+			this.letterArray.forEach(i => {
+				// i.alreadyGuessed = true;
+				// console.log(i);
+				i.correctLetter(letterGuess);
+
+			})
 
 		}
-	}
-
-	// this.reset = function() {
-	// 	this.lettersArray = [];
 	// }
+
+	this.reset = function() {
+		this.letterArray = [];
+	}
 
 }
 
