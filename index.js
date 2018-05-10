@@ -4,11 +4,10 @@ var clc = require('cli-color');
 
 
 
-var wordList = ['IRON MAN', 'CAPTAIN AMERICA', 'THOR', 'HULK', 'HAWKEYE', 'BLACK WIDOW'];
+var wordList = ['IRON MAN', 'CAPTAIN AMERICA', 'THOR', 'HULK', 'HAWKEYE', 'BLACK WIDOW', 'BLACK PANTHER', 'THANOS', 'DOCTOR STRANGE', 'WAR MACHINE', 'SPIDER MAN', 'SCARLET WITCH', 'FALCON', 'VISION'];
 var answer;
 var newWord;
 var nextGuessArray = [];
-
 
 
 
@@ -52,6 +51,22 @@ function newGame() {
         console.log('\n' + clc.magenta(nextGuessArray) + '\n');
     } else if (answer == 'BLACK WIDOW') {
         console.log('\n' + clc.white(nextGuessArray) + '\n');
+    } else if (answer == 'BLACK PANTHER') {
+        console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+    } else if (answer == 'THANOS') {
+        console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+    } else if (answer == 'DOCTOR STRANGE') {
+        console.log('\n' + clc.red(nextGuessArray) + '\n');
+    } else if (answer == 'WAR MACHINE') {
+        console.log('\n' + clc.white(nextGuessArray) + '\n');
+    } else if (answer == 'SPIDER MAN') {
+        console.log('\n' + clc.red(nextGuessArray) + '\n');
+    } else if (answer == 'SCARLET WITCH') {
+        console.log('\n' + clc.red(nextGuessArray) + '\n');
+    } else if (answer == 'FALCON') {
+        console.log('\n' + clc.red(nextGuessArray) + '\n');
+    } else if (answer == 'VISION') {
+        console.log('\n' + clc.magenta(nextGuessArray) + '\n');
     } 
 
     userLetter();
@@ -103,6 +118,22 @@ function userLetter() {
                 console.log('\n' + clc.magenta(nextGuessArray) + '\n');
             } else if (answer == 'BLACK WIDOW') {
                 console.log('\n' + clc.white(nextGuessArray) + '\n');
+            } else if (answer == 'BLACK PANTHER') {
+                console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+            } else if (answer == 'THANOS') {
+                console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+            } else if (answer == 'DOCTOR STRANGE') {
+                console.log('\n' + clc.red(nextGuessArray) + '\n');
+            } else if (answer == 'WAR MACHINE') {
+                console.log('\n' + clc.white(nextGuessArray) + '\n');
+            } else if (answer == 'SPIDER MAN') {
+                console.log('\n' + clc.red(nextGuessArray) + '\n');
+            } else if (answer == 'SCARLET WITCH') {
+                console.log('\n' + clc.red(nextGuessArray) + '\n');
+            } else if (answer == 'FALCON') {
+                console.log('\n' + clc.red(nextGuessArray) + '\n');
+            } else if (answer == 'VISION') {
+                console.log('\n' + clc.magenta(nextGuessArray) + '\n');
             } 
 
     
@@ -116,7 +147,7 @@ function userLetter() {
 };
 
 function ifWin() {
-    console.log(clc.bgRed('YOU WIN!\n'));
+    console.log(clc.bgRed('YOU WIN!') + '\n');
     resetGame();
 }
 
