@@ -9,16 +9,20 @@ var answer;
 var newWord;
 var nextGuessArray = [];
 
+
+
+
 function startGame() {
     inquirer.prompt([
         {
-            type: 'input',
+            type: 'confirm',
             name: 'start',
             message: 'Start game?'
         }
     ]).then(function(data) {
         if (data.start) {
             console.log(clc.yellow('\n==================\n') + clc.magenta('   AVENGER TIME!') + clc.yellow('\n=================='));
+            console.log(clc.cyan('*HINT: USE THE COLORS TO HELP YOU*'));
             newGame();
         }
     })
@@ -35,7 +39,20 @@ function newGame() {
     newWord.wordString(answer);
 
     nextGuessArray = newWord.underscoreArray.join(' ');
-    console.log('\n' + clc.cyan(nextGuessArray) + '\n');
+
+    if (answer == 'IRON MAN') {
+        console.log('\n' + clc.red(nextGuessArray) + '\n');
+    } else if (answer == 'CAPTAIN AMERICA') {
+        console.log('\n' + clc.blue(nextGuessArray) + '\n');
+    } else if (answer == 'THOR') {
+        console.log('\n' + clc.yellow(nextGuessArray) + '\n');
+    } else if (answer == 'HULK') {
+        console.log('\n' + clc.green(nextGuessArray) + '\n');
+    } else if (answer == 'HAWKEYE') {
+        console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+    } else if (answer == 'BLACK WIDOW') {
+        console.log('\n' + clc.white(nextGuessArray) + '\n');
+    } 
 
     userLetter();
 }
@@ -72,7 +89,21 @@ function userLetter() {
             nextGuessArray = newWord.underscoreArray.join(' ');
             // nextGuessWordArray = newWord.wordGuess.join(' ');
 
-            console.log('\n' + clc.cyan(nextGuessArray) + '\n');
+            // console.log('\n' + clc.cyan(nextGuessArray) + '\n');
+
+            if (answer == 'IRON MAN') {
+                console.log('\n' + clc.red(nextGuessArray) + '\n');
+            } else if (answer == 'CAPTAIN AMERICA') {
+                console.log('\n' + clc.blue(nextGuessArray) + '\n');
+            } else if (answer == 'THOR') {
+                console.log('\n' + clc.yellow(nextGuessArray) + '\n');
+            } else if (answer == 'HULK') {
+                console.log('\n' + clc.green(nextGuessArray) + '\n');
+            } else if (answer == 'HAWKEYE') {
+                console.log('\n' + clc.magenta(nextGuessArray) + '\n');
+            } else if (answer == 'BLACK WIDOW') {
+                console.log('\n' + clc.white(nextGuessArray) + '\n');
+            } 
 
     
             userLetter();
@@ -82,11 +113,6 @@ function userLetter() {
         ifWin();
     }
        
-
-
-
-       
-
 };
 
 function ifWin() {
@@ -99,7 +125,7 @@ function resetGame() {
 
     inquirer.prompt([
         {
-            type: 'input',
+            type: 'confirm',
             name: 'restart',
             message: 'PLAY AGAIN?'
         }
